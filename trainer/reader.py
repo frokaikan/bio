@@ -5,8 +5,7 @@ __all__ = ("Reader")
 
 class Reader:
     def __init__(
-        self,
-        fileName : str = "data.csv",
+        self, fileName : str,
         forwardFunc : Callable = np.log,
         backwardFunc : Callable  = np.exp
     ):
@@ -23,8 +22,3 @@ class Reader:
         return self.forwardFunc(self.data)
     def retrieveData(self, data : np.ndarray) -> np.ndarray :
         return self.backwardFunc(data)
-
-if __name__ == "__main__":
-    r = Reader()
-    print(r.data)
-    print(r.labels)

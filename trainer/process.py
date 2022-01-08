@@ -6,8 +6,9 @@ from math import isnan
 from random import sample
 from tqdm import tqdm
 
-from reader import Reader
-from util import EPS, PRINT_LOG, log, rmse, dropRowWithNAN, normalize, denormalize, lineOrdering, knnPredict
+from .reader import Reader
+from .config import EPS
+from .util import log, rmse, dropRowWithNAN, normalize, denormalize, lineOrdering, knnPredict
 
 class Process:
 
@@ -99,13 +100,3 @@ class Process:
         ret = knnPredict(trainData, self.knn_K, ordering)
         ret = denormalize(ret, trainDataMean, trainDataStd)
         return ret
-
-if __name__ == "__main__":
-    reader = Reader()
-    p = Process(reader)
-    p.getTrainData(0.04, 0.06)
-    fullData = p.trainDataFull
-    knn_eu = p.trainKNNEuc()
-    knn_cr = p.trainKNNCorr()
-    print("KNN-EU : ", rmse(knn_eu, fullData))
-    print("KNN-CR : ", rmse(knn_cr, fullData))

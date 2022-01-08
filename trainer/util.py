@@ -5,10 +5,9 @@ from time import time
 from tqdm import tqdm
 from functools import wraps
 
-__all__ = ("EPS", "log", "rmse", "dropRowWithNAN", "normalize", "denormalize", "lineOrdering")
+from .config import EPS, PRINT_LOG
 
-EPS = 1e-9
-PRINT_LOG = False
+__all__ = ("log", "rmse", "dropRowWithNAN", "normalize", "denormalize", "lineOrdering")
 
 def log(info):
     def logWrapper(func):
